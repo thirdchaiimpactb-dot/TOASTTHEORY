@@ -1,35 +1,18 @@
 {
   "name": "toasttheory",
-  "id": "toasttheory",
+  "description": "Restaurant promotion analysis skills for YKYN Northern Thai restaurant",
   "owner": {
     "name": "thirdchaiimpactb-dot"
-  },
-  "metadata": {
-    "description": "Restaurant promotion analysis system for YKYN Northern Thai restaurant — calculates Net Profit across 3 scenarios, detects 6 promotion traps, and generates staff scripts in Thai",
-    "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "toasttheory",
+      "description": "8 skills for analyzing, creating, and reporting restaurant promotions — with real cost data, 6-step Net Profit framework, and Apple-style reporting",
+      "version": "1.1.0",
       "source": "./",
-      "description": "AI-powered promotion analysis for YKYN (อยากข้าว อยากน้ำ) Northern Thai restaurant. Includes 7 skills and 1 specialized agent pre-loaded with real cost data, approved/banned promotion lists, and a 6-step Net Profit analysis framework.",
-      "version": "1.0.0",
       "author": {
         "name": "thirdchaiimpactb-dot"
-      },
-      "keywords": [
-        "restaurant",
-        "promotion",
-        "profit",
-        "thai",
-        "food-cost",
-        "margin",
-        "upsell",
-        "analytics"
-      ],
-      "category": "productivity",
-      "homepage": "https://github.com/thirdchaiimpactb-dot/TOASTTHEORY",
-      "strict": false
+      }
     }
   ]
 }

@@ -1,34 +1,25 @@
 ---
-description: สร้าง Promotion Performance Report รายสัปดาห์หรือรายเดือนสำหรับ YKYN — Apple-style design
+name: generate-promo-report
+description: Use when asked to generate a performance report for active promotions
 ---
 
-Use the ykyn-promo-analyst agent to generate a PROMOTION PERFORMANCE REPORT.
+# Generate Promo Report
 
-Arguments: "$ARGUMENTS"
-- ถ้าว่าง หรือ "monthly" → Monthly Report
-- "weekly" → Weekly Report
-- "promo [ชื่อโปร]" → Report เฉพาะโปรนั้น
+## Overview
 
----
+"The most important number appears first, alone."
 
-## DESIGN PRINCIPLES (Apple-style — apply strictly)
+Follow Apple design principles: content leads, whitespace is structure, single accent signal (→), full-width dividers as section breaks, no decorative chrome.
 
-The report is text/markdown, but must embody Apple's design language:
+## When to Use
 
-- **Content leads.** The most important number appears first, alone, prominent — no preamble.
-- **Whitespace is structure.** Use blank lines generously between sections. Let data breathe.
-- **Single accent signal.** Use `→` as the one interactive/action marker — nowhere else.
-- **Full-width dividers as tile breaks.** Use `────────────────────────────────────────` to separate sections, the way Apple alternates light/dark tiles edge-to-edge.
-- **Hierarchy through size, not decoration.** No bullets inside bullets. No nested trees. No emoji clusters.
-- **Short, punchy ALL CAPS section labels.** They are the "tagline" — 1–4 words only.
-- **Numbers are the hero.** Right-align or isolate key figures. Never bury them mid-sentence.
-- **No decorative chrome.** No `├──` trees, no colored circles, no badge-like patterns.
+Always use this skill when:
+- User asks for a report, summary, or performance review of promotions
+- Arguments: "monthly" (default), "weekly", or "promo [ชื่อ]" for single-promotion deep dive
 
----
+## Report Structure
 
-## REPORT TEMPLATE
-
-Generate the report **exactly** in this layout:
+Generate the report using this exact layout — preserve spacing and divider lines:
 
 ```
 ────────────────────────────────────────────────────────────
@@ -39,19 +30,19 @@ Promotion Performance Report
 NET GAIN THIS PERIOD
 
 ฿[XX,XXX]
-[จำนวนโปร active] promotions running · baseline ฿560/bill · [จำนวน] orders/month
+[จำนวน] promotions running · baseline ฿560/bill · [จำนวน] orders/month
 
 ────────────────────────────────────────────────────────────
 
 PROMOTIONS
 
 [โปร 1 — ชื่อ]                                    [Margin]% margin
-[Bundle: สินค้า]
+[Bundle]
 Profit ฿[XX]/bill · Target [กลุ่ม] · Net gain est. ฿[XX,XXX]/month
 Status  [Active / Monitor / Stop]
 
 [โปร 2 — ชื่อ]                                    [Margin]% margin
-[Bundle: สินค้า]
+[Bundle]
 Profit ฿[XX]/bill · [เงื่อนไข] · Net gain est. ฿[XX,XXX]/month
 Status  [Active / Monitor / Stop]
 
@@ -88,7 +79,7 @@ Price change before August 2026         3-month rule from May 2026
 
 NEXT PERIOD
 
-→ [โปรที่ควร continue และเหตุผล 1 บรรทัด]
+→ [โปรที่ควร continue]
 → [โปรที่ควรทดสอบใหม่ หรือ "-" ถ้าไม่มี]
 → Investigate cost data: DUNKEL · PATTAYA Beer · Rose Beer
 → Price adjustment eligible: August 2026
@@ -104,14 +95,24 @@ ACTION ITEMS
 ────────────────────────────────────────────────────────────
 ```
 
-## RULES FOR FILLING THE TEMPLATE
+## Status Labels
 
-- **NET GAIN**: sum of all est. monthly gains from active promotions
-- **Status labels**: use plain text — `Active` / `Monitor` / `Stop` — no emoji, no color indicators
-- **Monitor** = conversion between 20–30%, watch for 2 more weeks
-- **Stop** = conversion <20% after 2 weeks → kill condition triggered
-- **Ticket Analysis**: if no real data → use baseline figures and note "(baseline est.)"
-- **Action Items**: HIGH = must do this week · MED = this month · LOW = when possible
-- **Layout**: preserve the spacing and right-alignment of numbers — it carries the design
+- `Active` = conversion ≥ 30%, no issues
+- `Monitor` = conversion 20–30%, watch 2 more weeks
+- `Stop` = conversion <20% after 2 weeks (kill condition triggered)
 
-Note: ถ้าไม่มีข้อมูลยอดขายจริง ใช้ baseline data (383 orders/month, avg ฿560) และ note "(baseline est.)" ต่อท้ายตัวเลข
+## Design Rules — Do Not Break
+
+- NET GAIN number is isolated on its own line — never buried in a sentence
+- Section headers are ALL CAPS, 1–3 words only
+- `→` is the only action/interactive signal used — nowhere else
+- No emoji, no tree branches (`├──`), no nested bullets
+- Preserve the divider lines exactly as shown
+- If no real data available: use baseline figures and append "(baseline est.)"
+
+## Red Flags
+
+- Burying the Net Gain number inside a paragraph
+- Using emoji for status instead of plain text (Active/Monitor/Stop)
+- Adding decorative borders or nested structure
+- Mixing `→` with other symbols for action items
